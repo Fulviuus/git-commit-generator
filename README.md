@@ -12,8 +12,8 @@ This script generates a Git commit message based on a diff using OpenAI's GPT-4.
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/Fulviuus/commitgen.git
-cd your-repo
+git clone https://github.com/Fulviuus/git-commit-generator 
+cd git-commit-generator 
 ```
 
 2. Create a `.env` file in the root directory of the project and add your OpenAI API key and configuration:
