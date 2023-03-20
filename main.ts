@@ -26,7 +26,16 @@ if (args.help) {
 }
 
 const directory = args.dir || Deno.cwd();
-const { OPENAI_API_KEY, MODEL_VERSION, NUM_COMMIT_MESSAGES } = config();
+const openaiApiKeyFromEnv = Deno.env.get("OPENAI_API_KEY");
+const modelVersionFromEnv = Deno.env.get("MODEL_VERSION");
+const numCommitMessagesFromEnv = Deno.env.get("NUM_COMMIT_MESSAGES");
+
+const { OPENAI_API_KEY, MODEL_VERSION, NUM_COMMIT_MESSAGES } = {
+    OPENAI_API_KEY: openaiApiKeyFromEnv || config().OPENAI_API_KEY,
+    MODEL_VERSION: modelVersionFromEnv || config().MODEL_VERSION,
+    NUM_COMMIT_MESSAGES: numCommitMessagesFromEnv || config().NUM_COMMIT_MESSAGES,
+};
+
 const openai = new OpenAI(OPENAI_API_KEY);
 
 if (!OPENAI_API_KEY) {
