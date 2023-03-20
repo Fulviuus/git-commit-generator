@@ -3,6 +3,7 @@ import { OpenAI } from 'https://deno.land/x/openai/mod.ts';
 import { Confirm } from "https://deno.land/x/cliffy/prompt/confirm.ts";
 import { Select } from "https://deno.land/x/cliffy/prompt/select.ts";
 import chalk from "https://deno.land/x/chalk_deno@v4.1.1-deno/source/index.js";
+import { TerminalSpinner } from "https://deno.land/x/spinners/mod.ts";
 
 
 const HELP_MESSAGE = `
@@ -58,10 +59,14 @@ function hasChanges(diff: string): boolean {
 }
 
 async function getCommitMessages(diff: string): Promise<{ value: string; name: string; }[]> {
+    const terminalSpinner = new TerminalSpinner("Getting commits from OpenAI...");
+    terminalSpinner.start();
+
     const response = await openai.createChatCompletion({
         model: MODEL_VERSION,
         messages: [{ role: "user", content: `Suggest ${NUM_COMMIT_MESSAGES} Git commit messages for the following diff:\n\n${diff}` }],
     });
+    terminalSpinner.succeed("Commits fetched from OpenAI!");
 
     if (!response.choices || response.choices.length === 0) {
         console.error(chalk.red("Error: Unexpected response from OpenAI API. Please try running the tool again."));
