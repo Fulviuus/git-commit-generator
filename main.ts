@@ -122,6 +122,23 @@ async function commitWithMessage(message: string) {
     console.log(new TextDecoder().decode(output));
 }
 
+async function selectCommitMessage(commitMessages: { value: string; name: string; }[]): Promise<string | null> {
+    const options = [
+        ...commitMessages,
+        {
+            value: "refresh",
+            name: chalk.blue("Get more commit messages..."),
+        },
+    ];
+
+    const selectedMessage = await Select.prompt({
+        message: chalk.bold.yellow("Select a commit message:"),
+        options: options,
+    });
+
+    return selectedMessage === "refresh" ? null : selectedMessage;
+}
+
 
 (async () => {
     try {
@@ -132,13 +149,18 @@ async function commitWithMessage(message: string) {
             Deno.exit(0);
         }
 
-        const commitMessages = await getCommitMessages(diff);
+        let commitMessages = await getCommitMessages(diff);
+        let selectedMessage: string | null;
 
-        const selectedMessage = await Select.prompt({
-            message: chalk.bold.yellow("Select a commit message:"),
-            options: commitMessages,
-        });
+        do {
+            selectedMessage = await selectCommitMessage(commitMessages);
+            if (selectedMessage === null) {
+                commitMessages = await getCommitMessages(diff);
+            }
+        } while (selectedMessage === null);
+
         console.log(chalk.green("Selected commit message:"), selectedMessage);
+
         const confirmation = await Confirm.prompt({
             message: chalk.bold.yellow(`Do you want to commit with the message "${selectedMessage}"?`),
             default: "y",
