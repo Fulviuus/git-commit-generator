@@ -14,7 +14,7 @@ This script generates a Git commit message based on a diff using OpenAI's GPT-4.
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/Fulviuus/git-commit-generator 
+git clone https://github.com/Flviuus/git-commit-generator 
 cd git-commit-generator 
 ```
 
@@ -46,12 +46,6 @@ deno run --allow-net --allow-read --allow-run --allow-env main.ts -d /path/to/yo
 - `-d, --dir`: Directory where to perform the diff (default: current directory)
 - `--debug`: Show debug information
 
-## Example
-
-```bash
-$ deno run --allow-net --allow-read --allow-run --allow-env main.ts
-Update README.md with installation instructions
-```
 ## Running the script globally using an alias in .bashrc
 
 To run the script globally on your system, you can add an alias in your `.bashrc` file.
