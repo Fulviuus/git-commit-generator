@@ -16,7 +16,7 @@ Options:
 
 const args = parse(Deno.args, {
     alias: { h: "help", d: "dir" },
-    boolean: ["help"],
+    boolean: ["help", "debug"],
     string: ["dir"],
 });
 
@@ -79,6 +79,10 @@ async function getCommitMessages(diff: string): Promise<{ value: string; name: s
 
     if (!response.choices || response.choices.length === 0) {
         console.error(chalk.red("Error: Unexpected response from OpenAI API. Please try running the tool again."));
+        if (args.debug) {
+            console.error(chalk.red("Debug information:"));
+            console.error(response);
+        }
         Deno.exit(1);
     }
 
