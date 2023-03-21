@@ -1,4 +1,5 @@
-import { parse, config } from "./deps.ts";
+import { parse } from "https://deno.land/std/flags/mod.ts";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
 import { OpenAI } from 'https://deno.land/x/openai/mod.ts';
 import { Confirm } from "https://deno.land/x/cliffy/prompt/confirm.ts";
 import { Select } from "https://deno.land/x/cliffy/prompt/select.ts";
