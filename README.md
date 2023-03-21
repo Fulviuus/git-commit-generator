@@ -42,7 +42,7 @@ deno run --allow-net --allow-read --allow-run --allow-env main.ts -d /path/to/yo
 
 - `-h, --help`: Show the help message and exit
 - `-d, --dir`: Directory where to perform the diff (default: current directory)
-`--debug`: Show debug information
+- `--debug`: Show debug information
 
 ## Example
 
