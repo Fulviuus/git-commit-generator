@@ -65,9 +65,17 @@ nano ~/.bashrc
 alias commitgen='deno run --allow-net --allow-read --allow-run --allow-env /path/to/your-repo/main.ts'
 ```
 
-3. Save the file and exit the editor.
+3. Add the following environment variables to the file:
 
-4. Reload your `.bashrc` file by running:
+```bash
+export OPENAI_API_KEY=yout_openai_api_key_here
+export MODEL_VERSION=gpt-4
+export NUM_COMMIT_MESSAGES=3
+ ```
+
+4. Save the file and exit the editor.
+
+5. Reload your `.bashrc` file by running:
 
 ```bash
 source ~/.bashrc
@@ -108,6 +116,14 @@ sudo mv commitgen /usr/local/bin/
 ```bash
 sudo chmod +x /usr/local/bin/commitgen
 ```
+
+4. Add the following environment variables to your `.bashrc` file:
+
+```bash
+export OPENAI_API_KEY=yout_openai_api_key_here
+export MODEL_VERSION=gpt-4
+export NUM_COMMIT_MESSAGES=3
+ ```
 
 Now you can use the `commitgen` command from any directory to generate a commit message based on the current diff:
 
