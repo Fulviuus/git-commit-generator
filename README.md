@@ -2,6 +2,8 @@
 
 This script generates a Git commit message based on a diff using OpenAI's GPT-4. It uses Deno for running the script.
 
+![Screencast](assets/screencast.gif?raw=true "Demo - Screencast")
+
 ## Prerequisites
 
 - [Deno](https://deno.land/) installed
