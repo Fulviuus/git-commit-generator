@@ -13,6 +13,7 @@ Usage: deno run --allow-net --allow-read --allow-run --allow-env main.ts [option
 Options:
   -h, --help     Show this help message and exit
   -d, --dir      Directory where to perform the diff (default: current directory)
+  --debug        Show debug information
 `;
 
 const args = parse(Deno.args, {
